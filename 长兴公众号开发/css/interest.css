@@ -1,0 +1,176 @@
+body {
+	height: 97.1%;
+	overflow-y: auto;
+}
+
+.body {
+	font-size: 14px;
+}
+
+.kuandu {
+	width: calc(100% - 100px);
+	margin: 0 auto;
+}
+
+.zhuyi {
+	font-size: 14px;
+	float: left;
+	color: cornflowerblue;
+}
+
+.neirong {
+	font-size: 14px;
+	text-align: center;
+	color: cornflowerblue;
+}
+
+.anniu {
+	text-align: center;
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	z-index: 10000;
+	background-color: #2195F2;
+}
+
+.fals {
+	font-size: 10;
+	color: red;
+}
+
+.bdtf {
+	margin-left: 31px;
+}
+
+.img {
+	margin-left: 10px;
+	margin-top: 10px;
+	width: 15px;
+	height: 20px;
+}
+
+.weui-cells {
+	margin-top: 0.2em!important;
+	line-height: 1.9em!important;
+}
+
+.weui-cell {
+	padding: 1px 31px!important;
+}
+
+.weui-btn {
+	font-size: 14px!important;
+}
+
+.weui-label {
+	width: 67px!important;
+}
+
+.bodyname {
+	font-size: 14px;
+}
+
+.cell {
+	margin-top: 102px;
+	overflow-y: auto;
+}
+
+.tou {
+	font-size: 17px;
+	margin-left: 36%;
+	font-family: "楷体";
+	color: black;
+	padding: 9px;
+}
+
+.background {
+	background-color: lightgray;
+	margin-top: 40px;
+	position: fixed;
+	width: 100%;
+	z-index: 1000;
+}
+
+.hede {
+	background-color: white;
+	text-align: center;
+	position: fixed;
+	top: 0px;
+	width: 100%;
+	z-index: 1000;
+	height: 40px;
+}
+
+.fa-2x {
+	font-size: 1.8em!important;
+	color: #2195F2!important;
+}
+
+.weui-uploader__input-box {
+	margin-top: 0px!important;
+	margin-bottom: 0px!important;
+}
+
+select,
+textarea,
+input[type='text'],
+input[type='search'],
+input[type='password'],
+input[type='datetime'],
+input[type='datetime-local'],
+input[type='date'],
+input[type='month'],
+input[type='time'],
+input[type='week'],
+input[type='number'],
+input[type='email'],
+input[type='url'],
+input[type='tel'],
+input[type='color'] {
+	margin-bottom: 0px!important;
+}
+
+.mui-table-view-cell {
+	padding: 9px 15px!important;
+}
+
+.mui-table-view-cell>a:not(.mui-btn) {
+	margin: -12px 0px!important;
+}
+
+select,
+textarea,
+input[type='text'],
+input[type='search'],
+input[type='password'],
+input[type='datetime'],
+input[type='datetime-local'],
+input[type='date'],
+input[type='month'],
+input[type='time'],
+input[type='week'],
+input[type='number'],
+input[type='email'],
+input[type='url'],
+input[type='tel'],
+input[type='color'] {
+	padding: 10px 0px!important;
+}
+
+#allmap {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+
+.cell_img {
+	height: 40px;
+	width: 40px;
+}
+.anchorBL {  
+    display: none;  
+}  
+.weui-uploader__file{
+	     margin-right: 0px!important; 
+     	margin-bottom: 0px!important; 
+}

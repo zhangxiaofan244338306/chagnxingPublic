@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>长兴公众号</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="css/header.css">
+		<link rel="stylesheet" href="css/weui.min.css">
+		<link rel="stylesheet" href="css/jquery-weui.css">
+		<link rel="stylesheet" href="css/demos.css">
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link href="css/mui.picker.css" rel="stylesheet" />
+		<link href="css/mui.poppicker.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/index.css">
+
+	</head>
+	<style>
+		.DetailBd {
+    height: 295px;
+}
+	</style>
+
+	<body ontouchstart>
+		<script src="js/jquery-2.1.4.js"></script>
+		<script src="js/jquery-weui.js"></script>
+		<script type="text/javascript">
+			$.showLoading("页面加载中");
+		</script>
+		<div class="weui-tab">
+			<div class="weui-tab__bd">
+				<div id="tab2" class="weui-tab__bd-item weui-tab__bd-item--active infinite">
+					<div class="weui-flex hede" style="height: 40px;">
+						<div class="weui-flex" onclick="TiaoZhuan()"><span class="fa fa-angle-left fa-2xh backA"></span>
+						</div>
+						<h1 class=" tous">上报详情</h1>
+					</div>
+					<div id="allmap">
+
+					</div>
+
+					<div class="weui-actionsheet DetailBd" id="detail1">
+
+						<header class="headtitle">
+							<div class="weui-flex">
+								<div style="
+    z-index: 8000;
+    position: fixed;
+    width: 100%;
+    padding: 5px 0;
+"><span class=" Titlel" id="pointType">地址点</span></div>
+								<a class="cancle1" id="cancle"><span class="fa fa-close fa-2x"></span></a>
+							</div>
+						</header>
+						<div style="height: 260px;background-color: white; margin-top: 35px;overflow: auto">
+
+							<div>
+								<div style="height: 24px;margin-left: 10px;margin-top:6%;">
+									<h1 id="name"></h1>
+								</div>
+								<div class="poptab">
+									<span>城市:</span><span id="CityName"></span>
+								</div>
+								<div class="poptab">
+									<span>县市:</span><span id="describe"></span>
+								</div>
+								<div class="poptab">
+									<span>乡镇:</span><span id="townname"></span>
+								</div>
+								<div class="poptab">
+									<span>门牌:</span><span id="Doorplate1"></span><span >，</span><span id="Doorplate2"></span>
+								</div>
+								<div style="margin-left: 30px;width:303px ;margin-top: 10px;">
+									<span>地址:</span><span id="address"></span>
+								</div>
+								<div style="margin-left: 30px;width:303px ;margin-top: 10px;">
+									<span>详细地址:</span><span id="addresses"></span>
+								</div>
+								<div>
+									<ul>
+										<li class="mui-table-view-cell mui-collapse">
+											<a style="color: #f0ad4e;" href="#">更多</a>
+											<div class="mui-collapse-content">
+												<div class="poptab">
+													<span>街道:</span><span id="StreetName"></span>
+												</div>
+												<div class="poptab">
+													<span>Enticode:</span><span id="Enticode"></span>
+												</div>
+												<div class="poptab">
+													<span>Block:</span><span id="Block"></span>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<div class="weui-actionsheet DetailBd " id="detail2">
+						<header class="headtitle">
+							<div class="weui-flex">
+								<div style="
+    z-index: 8000;
+    position: fixed;
+    width: 100%;
+    padding: 5px 0;
+"><span class=" Titlel" id="pointType">兴趣点</span></div>
+								<a class="cancle1" id="cancles"><span class="fa fa-close fa-2x"></span></a>
+							</div>
+						</header>
+						<div style="height: 260px;background-color: white; margin-top: 35px;overflow: auto">
+							<div class="weui-flex">
+								<div>
+									<div style="height: 24px;margin-top:6%;margin-left:10px;">
+										<h1 id="namet"></h1>
+									</div>
+									<div class="poptab">
+										<span>城市:</span><span id="city"></span>
+									</div>
+									<div class="poptab">
+										<span>县市:</span><span id="describet"></span>
+									</div>
+									<div class="poptab">
+										<span>乡镇:</span><span id="Town"></span>
+									</div>
+								</div>
+								<div style="width: 146px; height: 87px;margin-top:40px ;">
+									<img id="Photo" />
+								</div>
+							</div>
+							<div style="margin-left: 30px;width:303px ;margin-top: 10px;">
+								<span>地址:</span><span id="addresst"></span>
+							</div>
+							<div>
+								<ul>
+									<li class="mui-table-view-cell mui-collapse">
+										<a style="color: #f0ad4e;" href="#">更多</a>
+										<div class="mui-collapse-content">
+											<div class="poptab">
+												<span>Enticode:</span><span id="Enticode"></span>
+											</div>
+											<div class="poptab">
+												<span>Block:</span><span id="Blocks"></span>
+											</div>
+											<div class="poptab">
+												<span>Fcode:</span><span id="Fcode"></span>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=WRopnGH4E03iFrqyXoDrbrGHwCoIuYeu&services=&t=20180130193904"></script>
+<script src="js/mui.js"></script>
+<script src="js/mui.picker.js"></script>
+<script src="js/mui.poppicker.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script src="js/jquery.cookie.js"></script>
+<!--
+	描述：处理页面加载提示
+-->
+<script type="text/javascript">
+	window.onload = function() {
+		$.hideLoading();
+	};
+</script>
+<!--
+	描述：处理地图内容
+-->
+<script type="text/javascript">
+	function TiaoZhuan(){
+		window.location.href='uploading.html'
+	}
+	var map;
+	$(document).ready(function() {
+
+		map = new BMap.Map("allmap", {
+			minZoom: 17,
+			enableHighAccuracy: true
+		});
+
+		map.centerAndZoom(new BMap.Point(119.668666, 30.911614), 19);
+	});
+	//	var geolocation = new BMap.Geolocation();
+	//	geolocation.getCurrentPosition(function(r) {
+	//		if(this.getStatus() == BMAP_STATUS_SUCCESS) {
+	//			//map.centerAndZoom(new BMap.Point(119.668666, 30.911614), 19);
+	//			map.centerAndZoom(new BMap.Point(r.point.lng, r.point.lat), 19);
+	//		}
+	//	}, {
+	//		enableHighAccuracy: true
+	//	})
+
+	//获取url的中的参数
+	var url = location.href;
+	var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+	var paraObj = {}
+	for(i = 0; j = paraString[i]; i++) {
+		paraObj[j.substring(0, j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=") + 1, j.length);
+	}
+	//var name = decodeURI(paraObj.name);//获取中文使用，含有编码
+	var type = paraObj.type;
+	var pointid = paraObj.pointid;
+
+	//读取cookie：
+	var token = $.cookie('token');
+
+	function pops() {
+		if(type == 1)
+			$("#detail1").addClass("weui-actionsheet_toggle");
+		else
+			$("#detail2").addClass("weui-actionsheet_toggle");
+	}
+
+	function canclel() {
+		if(type == 1)
+			$("#detail1").removeClass("weui-actionsheet_toggle");
+		else
+			$("#detail2").removeClass("weui-actionsheet_toggle");
+	}
+
+	//请求地址中间点
+
+	$(document).ready(function() {
+		setTimeout(function() {
+			$.showLoading();
+			if(type != 1) {
+				$.hideLoading();
+				return;
+			}
+			$.ajax({
+				type: "get",
+				url: "http://zhangle.nat300.top/api/AddressMiddle/GetAddressMiddleByID?addMiddleID=" + pointid,
+				dataType: 'json',
+				cache: false, //是否缓存结果
+				async: true, //是否异步请求
+				success: function(GetRangeAddress) {
+					//
+					var data = GetRangeAddress;
+					var addmiddle = data.addressMIddle;
+					if(data.res == "ERROR") {
+						$.alert(data.meg, "错误提示");
+						$.hideLoading();
+						return;
+					}
+					$.hideLoading();
+					//
+					var point = new BMap.Point(addmiddle.BD09Lon, addmiddle.BD09Lat);
+					map.centerAndZoom(point, 19);
+					var myIcon = new BMap.Icon("img/viewMarker.png", new BMap.Size(24, 36));
+					var marker2 = new BMap.Marker(point, {
+						icon: myIcon
+					}); // 创建标注
+					map.addOverlay(marker2);
+					marker2.name = addmiddle.AliasName;
+					marker2.AddName = addmiddle.AddName;
+					marker2.CityName = addmiddle.CityName;
+					marker2.ContyName = addmiddle.CountyName;
+					marker2.TownNmae = addmiddle.TownName;
+					marker2.Doorplate1 = addmiddle.Doorplate1;
+					marker2.Doorplate2 = addmiddle.Doorplate2;
+					marker2.StreetName = addmiddle.StreetName;
+					marker2.address = addmiddle.Address;
+					marker2.Block = addmiddle.Block;
+
+					//弹出窗监听
+					marker2.addEventListener("click", function(e) {
+						pops();
+						var p = e.target;
+						document.getElementById("name").innerHTML = p.name;
+						document.getElementById("address").innerHTML = p.address;
+						document.getElementById("addresses").innerHTML = p.AddName;
+						document.getElementById("describe").innerHTML = p.ContyName;
+						document.getElementById("townname").innerHTML = p.TownNmae;
+						document.getElementById("Doorplate1").innerHTML = p.Doorplate1;
+						document.getElementById("Doorplate2").innerHTML = p.Doorplate2;
+						document.getElementById("StreetName").innerHTML = p.StreetName;
+						document.getElementById("Enticode").innerHTML = p.Enticode;
+						document.getElementById("Block").innerHTML = p.Block;
+						document.getElementById("CityName").innerHTML = p.CityName;
+					});
+					//详情弹出窗取消
+					var cancle = document.getElementById("cancle")
+					cancle.addEventListener("click", function(e) {
+						canclel()
+					});
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					$.hideLoading();
+					$.alert("请求失败", "错误提示");
+				}
+			});
+		}, 0);
+	});
+
+	//请求兴趣点
+	$(document).ready(function() {
+		$.showLoading();
+		if(type != 2) {
+			$.hideLoading();
+			return;
+		}
+		$.ajax({
+			type: "get",
+			url: "http://zhangle.nat300.top/api/POIMiddle/GetPOIMiddleByID?poiMiddleID=" + pointid,
+			dataType: 'json',
+			cache: false, //是否缓存结果
+			async: true, //是否异步请求
+			success: function(GetRangeAddress) {
+				//
+				var data = GetRangeAddress;
+				var poimiddle = data.poiMIddle;
+				if(data.res == "ERROR") {
+					$.alert(data.meg, "错误提示");
+					$.hideLoading();
+					return;
+				}
+				$.hideLoading();
+				//
+				var point = new BMap.Point(parseFloat(poimiddle.BD09Lon), parseFloat(poimiddle.BD09Lat));
+				map.centerAndZoom(point, 19);
+				var myIcon = new BMap.Icon("img/kaifaquMarker.png", new BMap.Size(24, 36));
+				var marker2 = new BMap.Marker(point, {
+					icon: myIcon
+				}); // 创建标注
+				map.addOverlay(marker2);
+				marker2.name = poimiddle.Name;
+				marker2.CityName = poimiddle.CityName;
+				marker2.ContyName = poimiddle.CountyName;
+				marker2.TownName = poimiddle.TownName;
+				marker2.Address = poimiddle.Address;
+				marker2.Enticode = poimiddle.Enticode;
+				marker2.Block = poimiddle.Block;
+				marker2.Fcode = poimiddle.Fcode;
+
+				//弹出窗监听
+				marker2.addEventListener("click", function(e) {
+					pops();
+					var p = e.target;
+					document.getElementById("namet").innerHTML = p.name;
+					document.getElementById("addresst").innerHTML = p.Address;
+					document.getElementById("city").innerHTML = p.CityName;
+					document.getElementById("Town").innerHTML = p.TownName;
+					document.getElementById("describet").innerHTML = p.ContyName;
+					document.getElementById("Enticode").innerHTML = p.Enticode;
+					document.getElementById("Blocks").innerHTML = p.Block;
+					document.getElementById("Fcode").innerHTML = p.Fcode;
+				});
+
+				//详情弹出窗取消
+				var cancles = document.getElementById("cancles")
+				cancles.addEventListener("click", function(e) {
+					canclel()
+				});
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				$.hideLoading();
+				$.alert("请求失败", "错误提示");
+			}
+		});
+
+	});
+</script>

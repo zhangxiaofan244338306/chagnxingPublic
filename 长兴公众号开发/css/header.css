@@ -1,0 +1,20 @@
+.backA{
+	    margin-right: -10px;
+    margin-left: 0px;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1;
+    display: inline-block;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    z-index: 20;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.mui-h1, h1 {
+    font-size: 16px!important;
+}

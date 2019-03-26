@@ -1,0 +1,157 @@
+body {
+	height: 100%;
+}
+
+.tou {
+	font-size: 17px;
+    margin-left: 36%;
+    font-family: "楷体";
+    color: black;
+    padding: 9px;
+}
+
+.body {
+	font-size: 14px;
+}
+
+.background {
+	background-color: lightgray;
+    margin-top: 40px;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.kuandu {
+	width: calc(100% - 48px);
+	float: right;
+}
+
+.fals {
+	font-size: 10;
+	color: red;
+}
+
+.anniu {
+	text-align: center;
+	position: fixed;
+	bottom: 0px;
+	width: 100%;
+	background-color: #2195F2;
+	z-index: 16000;
+}
+
+.bdtf {
+	margin-left: 31px;
+}
+
+.bdte {
+	margin-left: 1px;
+}
+
+.img {
+	margin-left: 10px;
+	margin-top: 10px;
+	width: 15px;
+	height: 20px;
+}
+
+.hede {
+	background-color: white;
+	text-align: center;
+	position: fixed;
+	top: 0px;
+	width: 100%;
+	z-index: 1000;
+height: 40px;
+}
+
+.weui-cells {
+	margin-top: 0.1em!important;
+	line-height: 1.9em!important;
+}
+
+.weui-cell {
+	padding: 2px 31px!important;
+}
+
+.weui-btn {
+	font-size: 14px!important;
+}
+
+.weui-label {
+	width: 67px!important;
+}
+
+.bodyname {
+	font-size: 14px;
+}
+
+.cell {
+	margin-top: 102px;
+	overflow: auto;
+}
+
+.fa-2x {
+	font-size: 1.8em!important;
+	color: #2195F2!important;
+	
+}
+
+select,
+textarea,
+input[type='text'],
+input[type='search'],
+input[type='password'],
+input[type='datetime'],
+input[type='datetime-local'],
+input[type='date'],
+input[type='month'],
+input[type='time'],
+input[type='week'],
+input[type='number'],
+input[type='email'],
+input[type='url'],
+input[type='tel'],
+input[type='color'] {
+	margin-bottom: 0px!important;
+}
+
+.mui-table-view-cell {
+	padding: 9px 15px!important;
+}
+
+.mui-table-view-cell>a:not(.mui-btn) {
+	margin: -12px 0px!important;
+}
+
+select,
+textarea,
+input[type='text'],
+input[type='search'],
+input[type='password'],
+input[type='datetime'],
+input[type='datetime-local'],
+input[type='date'],
+input[type='month'],
+input[type='time'],
+input[type='week'],
+input[type='number'],
+input[type='email'],
+input[type='url'],
+input[type='tel'],
+input[type='color'] {
+	padding: 10px 0px!important;
+}
+#allmap {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
+.cell_img{
+	height: 40px;width: 40px;
+}
+
+.anchorBL {  
+    display: none;  
+}  

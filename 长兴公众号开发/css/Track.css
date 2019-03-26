@@ -1,0 +1,160 @@
+body {
+	font-size: 14px;
+}
+
+.ziti {
+	line-height: 44px;
+	font-weight: bold;
+}
+
+.table {
+	background-color: #E1F5FB;
+}
+
+table {
+	width: 100%;
+	height: 20%;
+	border: 1px;
+	border-style: solid;
+}
+
+.img {
+	margin-left: 10px;
+	margin-top: 10px;
+	width: 15px;
+	height: 20px;
+}
+
+.left {
+	border-left: 1px;
+	border-left-style: solid;
+	border-left-color: deepskyblue;
+}
+
+.suzi1 {
+	color: darkgrey;
+	margin-left: 10px;
+	margin-top: 0px;
+}
+
+.maishu {
+	font-size: 14px;
+}
+
+.imgsz {
+	margin-top: 5px;
+	margin-left: 5px;
+	width: 27px;
+	height: 27px;
+}
+
+.tbbody {
+	margin-top: 40px;
+	position: relative;
+	width: 100%;
+}
+
+.bodycell {
+	position: absolute;
+	margin-top: 33px;
+	width: 100%;
+}
+
+.fa-self {
+	font-size: 1.4em;
+	margin-left: 5px;
+	margin-top: 8px;
+}
+
+.table_name {
+	margin-left: 3px;
+	text-overflow ：ellipsis;
+}
+
+.table_type {
+	margin-left: 45px;
+}
+
+.table_type_input {
+	margin-left: 3px;
+	width: 45%;
+	text-overflow: -o-ellipsis-lastline;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.table_address {
+	margin-left: 45px;
+	height: 8%;
+}
+
+.table_address_input {
+	margin-left: 1%;
+	width: 45%;
+	height: 38px;
+	text-overflow: -o-ellipsis-lastline;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+}
+
+.table_location {
+	
+	margin:auto;
+}
+
+.table_one {
+	background-color: #F5DFC6;
+	border: 1px;
+	border-color: lightgray;
+	border-style: solid;
+}
+
+.table_location {
+	
+	margin:auto;
+}
+
+.tou {
+	font-size: 17px;
+	margin-left: 36%;
+	font-family: "楷体";
+	color: black;
+	padding: 9px;
+}
+
+.background {
+	background-color: lightgray;
+	margin-top: 34px;
+	position: fixed;
+	width: 100%;
+	z-index: 1000;
+}
+
+.hede {
+	background-color: white;
+	text-align: center;
+	position: fixed;
+	top: 0px;
+	width: 100%;
+	z-index: 1000;
+}
+
+.fa-2x {
+	font-size: 2em!important;
+	color: #2195F2!important;
+}
+
+.cell_img {
+	height: 40px;
+	width: 40px;
+}
+.weui-loadmore{
+	    width: 100%!important;
+	    position: absolute!important;
+}

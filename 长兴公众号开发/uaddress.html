@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>长兴公众号</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="css/header.css">
+		<link rel="stylesheet" href="css/weui.min.css">
+		<link rel="stylesheet" href="css/jquery-weui.css">
+		<link rel="stylesheet" href="css/demos.css">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/address.css">
+	</head>
+
+	<body>
+		<div class="weui-tab__bd">
+			<div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+				<div class="" id="test1">
+
+					<header>
+						<div class="weui-flex hede">
+							<div class="weui-flex" onclick="to()"><span class="fa fa-angle-left fa-2x backA"></span>
+
+							</div>
+							<h1 class=" tou">地址点</h1>
+						</div>
+
+						<div class="background">
+							<span class="body bdtf">城市：</span><span id="city" class="body bdte"></span><br />
+							<span class="body bdtf">县市：</span><span id="COUNTY" class="body bdte"></span><br />
+							<span class="body bdtf">乡镇：</span><span id="street" class="body bdte"></span>
+						</div>
+					</header>
+
+				</div>
+				<div class="cell" style="margin-bottom: 47px;">
+					<form id="form">
+						<div>
+							<div class="weui-cells weui-cells_form">
+								<!--隐藏元素-->
+								<div style="display: none;">
+									<input type="text" name="cityname" id="cityname" />
+									<input type="text" name="countyname" id="contyname" />
+									<input type="text" name="townname" id="townname" />
+									<input type="text" name="BD09Lon" id="BD09Lon" />
+									<input type="text" name="BD09Lat" id="BD09Lat" />
+								</div>
+								<input type="hidden" name="BD09Lon" id="BD09Lons" />
+								<input type="hidden" name="BD09Lat" id="BD09Lats" />
+								<!--隐藏元素-->
+
+								<div class="weui-cell weui-cell_vcode">
+									<div class="weui-cell__hd">
+										<label class="weui-label bodyname">名称</label>
+									</div>
+									<div class="weui-cell__bd">
+										<input class="weui-input bodyname" name="ALIASNAME" id="mc" onchange="checkmc()" type="name" placeholder="请输入名称">
+									</div>
+								</div>
+
+								<div class="weui-cell weui-cell_vcode">
+									<div class="weui-cell__hd">
+										<label class="weui-label bodyname">行政村名</label>
+									</div>
+									<div class="weui-cell__bd">
+										<input class="weui-input bodyname" name="VILLAGNAME" id="xzcm" onchange="checkxzcm()" type="name" placeholder="请输入行政村名称">
+									</div>
+								</div>
+
+								<div class="weui-cell weui-cell_vcode">
+									<div class="weui-cell__hd">
+										<label class="weui-label bodyname">街巷名</label>
+									</div>
+									<div class="weui-cell__bd">
+										<input class="weui-input bodyname" name="STREETNAME" id="jxm" onchange="checkjxm()" type="name" placeholder="请输入街巷名称">
+									</div>
+								</div>
+
+								<div class="weui-cell weui-cell_vcode">
+									<div class="weui-cell__hd">
+										<label class="weui-label bodyname">小区名</label>
+									</div>
+									<div class="weui-cell__bd">
+										<input class="weui-input bodyname" name="DISTRINAME" id="xqm" onchange="checkxqm()" type="name" placeholder="请输入小区名称">
+									</div>
+								</div>
+
+								<div class="weui-cell weui-cell_vcode">
+									<div class="weui-cell__hd">
+										<label class="weui-label bodyname">开发区名</label>
+									</div>
+									<div class="weui-cell__bd">
+										<input class="weui-input bodyname" name="DEVREGNAME" id="kfq" onchange="checkkfq()" type="name" placeholder="请输入开发区名称">
+									</div>
+								</div>
+
+								<div class="weui-cell weui-cell_vcode">
+									<div class="weui-cell__hd">
+										<label class="weui-label bodyname">门牌号1</label>
+									</div>
+									<div class="weui-cell__bd">
+										<input class="weui-input bodyname" name="DOORPLATE1" id="mpho" onchange="checkmpho()" placeholder="请输入门牌号1">
+									</div>
+								</div>
+
+								<div class="weui-cell weui-cell_vcode">
+									<div class="weui-cell__hd">
+										<label class="weui-label bodyname">门牌号2</label>
+									</div>
+									<div class="weui-cell__bd">
+										<input class="weui-input bodyname" name="DOORPLATE2" id="mpht" onchange="checkmpht()" placeholder="请输入门牌号2">
+									</div>
+								</div>
+
+								<div class="weui-cell weui-cell_vcode">
+									<div class="weui-cell__hd">
+										<label class="weui-label bodyname">地址</label>
+									</div>
+									<div class="weui-cell__bd">
+										<textarea class="weui-textarea bodyname" placeholder="请输入地址" rows="3" name="ADDRESS" id="dz" onchange="checkdz()"></textarea>
+									</div>
+									<div class="weui-cell__bd">
+										<a onclick="pop()" style="text-decoration: none;color: #007aff;right: 22px;position: absolute;bottom: 32.5px;"><img src="img/geolocation.150X150.png" class="cell_img" /></a>
+									</div>
+								</div>
+
+								<div>
+									<ul class="mui-table-view">
+										<li class="mui-table-view-cell mui-collapse">
+											<a href="#" class="bodyname">更多</a>
+											<div class="mui-collapse-content">
+												<div class="weui-cell weui-cell_vcode">
+													<div class="weui-cell__hd">
+														<label class="weui-label bodyname">FCODE</label>
+													</div>
+													<div class="weui-cell__bd">
+														<input class="weui-input bodyname" name="" id="FCODE" onchange="" type="name" placeholder="">
+													</div>
+												</div>
+
+												<div class="weui-cell weui-cell_vcode">
+													<div class="weui-cell__hd">
+														<label class="weui-label bodyname">地址</label>
+													</div>
+													<div class="weui-cell__bd">
+														<input class="weui-input bodyname" name="" id="adress" onchange="" type="name" placeholder="">
+													</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+					</form>
+					</div>
+				</div>
+
+				<div id="bot">
+					<p class="anniu" id="test1">
+						<button type="submit" id="submitButton" onclick="submit()" class="weui-btn weui-btn_primary anniu"><img src="img/WhileSubmit150X150.png" style="height: 32px;width: 32px;margin-bottom: -11px;" /><span>提交</span>
+			</button></p>
+				</div>
+			</div>
+
+			<div id="tab2" class="weui-tab__bd-item ">
+				<div class="weui-flex hede">
+					<div class="weui-flex" onclick="setSecurePwd()"><span class="fa fa-angle-left fa-2x backA"></span>
+
+					</div>
+					<h1 class=" tou">地图选点</h1>
+				</div>
+
+				<div id="allmap">
+
+				</div>
+				<p class="anniu" id="test1">
+					<button id="submitButton" onclick="setSecurePwd()" class="weui-btn weui-btn_primary anniu">确定</button></p>
+			</div>
+
+		</div>
+	</body>
+
+</html>
+<script src="js/jquery-2.1.4.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script src="js/mui.min.js"></script>
+<script src="js/jquery-weui.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=WRopnGH4E03iFrqyXoDrbrGHwCoIuYeu&services=&t=20180130193904"></script>
+<script src="js/address.js"></script>
+<script type="text/javascript">
+	function to() {
+		window.location.href = 'index.html'
+	}
+	//判断是否是由任务页面跳转--获取taskID
+	var url = location.href;
+	var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+	var paraObj = {}
+	for(i = 0; j = paraString[i]; i++) {
+		paraObj[j.substring(0, j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=") + 1, j.length);
+	}
+	var taskID = paraObj.taskID;
+	if(typeof(taskID) == "undefined") {
+		taskID = 0; //如果无任务，taskID = 0;
+	}
+	//获取token
+	var token = $.cookie('token');
+
+	var map = new BMap.Map("allmap", {
+		minZoom: 17
+	});
+	//初始化定位
+	var geolocation = new BMap.Geolocation();
+	//坐标解析地址
+	var geoc = new BMap.Geocoder();
+
+	geolocation.getCurrentPosition(function(r) {
+		if(this.getStatus() == BMAP_STATUS_SUCCESS) {
+			var point = r.point;
+			geoc.getLocation(point, function(rs) {
+				var addComp = rs.addressComponents;
+				var intext = (addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber);
+
+			});
+			document.getElementById("BD09Lon").value = point.lng;
+			document.getElementById("BD09Lat").value = point.lat;
+		}
+	}, {
+		enableHighAccuracy: true
+	});
+
+	//定时上传路径
+	reportPath();
+	var repath = self.setInterval("reportPath()", 30000);
+
+	function reportPath() {
+		//定位
+		geolocation.getCurrentPosition(function(r) {
+			if(this.getStatus() == BMAP_STATUS_SUCCESS) {
+				$.ajax({
+					url: "http://zhangle.nat300.top/api/ReportPath/AddNewReportPath?point=" + r.point.lng + "," + r.point.lat + "&token=" + token,
+					type: "POST",
+					dataType: "json",
+					success: function(result) {
+						if(result.res == "ERROR") {
+							$.alert(result.meg, "错误提示");
+						}
+					}
+				});
+			}
+		}, {
+			enableHighAccuracy: true
+		});
+	}
+
+	function pop() {
+		$("#tab1").removeClass("weui-tab__bd-item--active");
+		$("#tab2").addClass("weui-tab__bd-item--active");
+
+		//定位
+		geolocation.getCurrentPosition(function(r) {
+			if(this.getStatus() == BMAP_STATUS_SUCCESS) {
+				map.centerAndZoom(new BMap.Point(r.point.lng, r.point.lat), 19);
+			}
+		}, {
+			enableHighAccuracy: true
+		});
+
+		//计算地图的尺寸以得出中心点应该所处的位移距离  
+		var m_height = (map.getSize().height - 24) / 2;
+		var m_width = (map.getSize().width - 19) / 2;
+		// 定义一个控件类,即function  
+		function ZoomControl() {
+			// 默认停靠位置和偏移量  
+			this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
+			this.defaultOffset = new BMap.Size(m_width, m_height);
+		}
+		// 通过JavaScript的prototype属性继承于BMap.Control  
+		ZoomControl.prototype = new BMap.Control();
+
+		// 自定义控件必须实现自己的initialize方法,并且将控件的DOM元素返回  
+		// 在本方法中创建个div元素作为控件的容器,并将其添加到地图容器中  
+		ZoomControl.prototype.initialize = function(map) {
+			// 创建一个DOM元素  
+			var div = document.createElement("div");
+			//div.innerHTML='aaaa';  
+			// 添加文字说明     
+			// 设置样式   
+			div.style.width = "24px";
+			div.style.height = "36px";
+			div.style.cursor = "pointer";
+			div.style.background = "url(img/marker.png) center no-repeat";
+			// 绑定事件,点击一次放大两级  
+			div.onclick = function(e) {
+				map.setZoom(map.getZoom() + 2);
+			}
+			// 添加DOM元素到地图中  
+			map.getContainer().appendChild(div);
+			//alert(map.getContainer().style.width);  
+			// 将DOM元素返回  
+			return div;
+		}
+		var myZoomCtrl = new ZoomControl();
+		// 添加到地图当中  
+		map.addControl(myZoomCtrl);
+		//拖拽选点
+		map.addEventListener('touchend', function() {
+			var p = map.getCenter();
+			//获取当前所选点地址信息
+			var geoc = new BMap.Geocoder();
+			geoc.getLocation(p, function(rs) {
+				var addComp = rs.addressComponents;
+				var intext = (addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber);
+				document.getElementById("dz").innerHTML = intext;
+				document.getElementById("city").innerHTML = addComp.city
+				document.getElementById("COUNTY").innerHTML = addComp.district
+				document.getElementById("street").innerHTML = addComp.street
+				document.getElementById("cityname").value = addComp.city
+				document.getElementById("contyname").value = addComp.district
+				document.getElementById("townname").value = addComp.street
+			});
+			document.getElementById("BD09Lon").value = p.lng;
+			document.getElementById("BD09Lat").value = p.lat;
+			
+		});
+	}
+
+	function setSecurePwd() {
+		$("#tab1").addClass("weui-tab__bd-item--active");
+		$("#tab2").removeClass("weui-tab__bd-item--active");
+	}
+
+	//数据提交
+	function submit() {
+		//使按钮失效
+		$("#submitButton").attr("disabled", true);
+		//清除定时器
+		window.clearInterval(repath);
+
+		var formobj = document.querySelector('form');
+		var fd = new FormData(formobj);
+		var objData = {};
+		fd.forEach((value, key) => objData[key] = value);
+
+		$.showLoading("数据提交中...");
+
+		$.ajax({
+			url: "http://zhangle.nat300.top/api/AddressMiddle/AddNewAddress?token=" + token + "&&taskID=" + taskID,
+			type: "POST",
+			data: objData,
+			dataType: "json",
+			success: function(result) {
+				$.hideLoading();
+				if(result.res == "ERROR") {
+					$.alert(result.meg, "错误提示");
+					$("#submitButton").removeAttr("disabled");//使按钮生效
+				} else {
+					$.alert(result.meg, "操作提示");
+					$("#form")[0].reset();
+					$("#submitButton").removeAttr("disabled");//使按钮生效
+				}
+
+			}
+		});
+	}
+	//url中取参
+	var url = location.href;
+	var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+	var paraObj = {}
+	for(i = 0; j = paraString[i]; i++) {
+		paraObj[j.substring(0, j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=") + 1, j.length);
+	}
+	//var name = decodeURI(paraObj.name);//获取中文使用，含有编码
+	var pointid = paraObj.pointid;
+
+	function address() {
+		$.showLoading("数据加载中...");
+		$.ajax({
+			type: "get",
+			url: "http://zhangle.nat300.top/api/Address/GetAddressBaseByID?id=" + pointid,
+			dataType: 'json',
+			cache: false, //是否缓存结果
+			async: true, //是否异步请求
+			success: function(GetRangeAddress) {
+				//
+				var data = GetRangeAddress;
+				if(data.res == "ERROR") {
+					$.alert(data.meg, "错误提示");
+					return;
+				}
+
+				document.getElementById("mc").value = data.AliasName;
+				document.getElementById("xzcm").value = data.VillagName;
+				document.getElementById("city").innerHTML = data.CityName;
+				document.getElementById("COUNTY").innerHTML = data.CountyName;
+				document.getElementById("street").innerHTML = data.TownName;
+				document.getElementById("mpho").value = data.Doorplate1;
+				document.getElementById("mpht").value = data.Doorplate2;
+				document.getElementById("jxm").value = data.StreetName;
+				document.getElementById("xqm").value = data.DistriName;
+				document.getElementById("kfq").value = data.DevregName;
+				document.getElementById("dz").innerHTML = data.Address;
+				document.getElementById("BD09Lons").value = data.BD09Lon;
+				document.getElementById("BD09Lats").value = data.BD09Lat;
+				$.hideLoading();
+
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				$.hideLoading();
+				$.alert("请求失败", "错误提示");
+			}
+		});
+	}
+	$(document).ready(function() {
+		address()
+	});
+</script>

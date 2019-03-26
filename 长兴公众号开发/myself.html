@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>长兴公众号</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="css/header.css">
+		<link rel="stylesheet" href="css/weui.min.css">
+		<link rel="stylesheet" href="css/jquery-weui.css">
+		<link rel="stylesheet" href="css/demos.css">
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/index.css">
+	</head>
+
+	<body ontouchstart>
+	<script src="js/jquery-2.1.4.js"></script>
+		<script src="js/jquery-weui.js"></script>
+		<script type="text/javascript">
+			$.showLoading("页面加载中");
+		</script>
+		<div class="weui-tab">
+			<div class="weui-tab__bd">
+				<div id="tab3" class="weui-tab__bd-item weui-tab__bd-item--active">
+					<div class="weui-flex hede">
+						<div class="weui-flex" onclick="TiaoZhuan()"><span class="fa fa-angle-left fa-2xh backA"></span>
+						</div>
+						<h1 class=" tous">我的</h1>
+					</div>
+					<div class="weui-flex tou cell">
+						<div class="weui-flex__item" style="width: 30%;">
+							<div class="placeholder" id="imginfo"><img class="touxiang to" data-original=""></div>
+						</div>
+						<div class="weui-flex__item" style="margin-right: 25%;">
+							<div class="placeholder " style="margin-top: 19%;"><span class="divcss5">&nbsp; 贡献值:&nbsp; </span><span class="divcss5" id="attribute">&nbsp; </span><br>
+								<span class="divcss5">&nbsp; 活跃度: &nbsp;</span><span class="divcss5" id="activity">&nbsp;</span></div>
+							<div class="weui-flex" style="margin-top: 10px;">
+								<div>
+									<span class="fa fa-jpy fa-self" style="color: red;"></span>
+								</div>
+								<div style="margin-top: 5%;margin-left: 6%;">
+									<span class="nombor"></span>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="weui-cells">
+						<a class="weui-cell weui-cell_access buttons" href="uploading.html">
+							<div class="weui-cell__bd">
+								<div class="weui-flex">
+									<img src="img/MyUploading150X150.png" class="cell_img" />
+									<p class="cellname">我的上报</p>
+								</div>
+							</div>
+							<div class="weui-cell__ft">
+							</div>
+						</a>
+						<a class="weui-cell weui-cell_access buttons" href="Award.html">
+							<div class="weui-cell__bd">
+								<div class="weui-flex">
+									<img src="img/MyAward150X150.png" class="cell_img" style="color: red;" />
+
+									<p class="cellname">我的奖励</p>
+								</div>
+							</div>
+							<div class="weui-cell__ft">
+							</div>
+						</a>
+						<a class="weui-cell weui-cell_access buttons" href="Track.html">
+							<div class="weui-cell__bd">
+								<div class="weui-flex">
+									<img src="img/MyTrack150X150.png" class="cell_img" />
+									<p class="cellname">我的轨迹</p>
+								</div>
+							</div>
+							<div class="weui-cell__ft">
+							</div>
+						</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=WRopnGH4E03iFrqyXoDrbrGHwCoIuYeu&services=&t=20180130193904"></script>
+<script src="js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript">
+	window.onload = function() {
+		$.hideLoading();
+	};
+
+
+	var token = $.cookie('token');
+	$(function() {
+		getUserInfo();
+	});
+
+	//图片延迟加载
+	function img_lazyload() {
+		$("#imginfo img:not('.lazy')").each(function() {
+			$(this).lazyload({
+				placeholder: "img/home.png",
+				effect: "fadeIn"
+			}).addClass('lazy');
+		});
+	}
+	//获取用户信息
+	function getUserInfo() {
+		$.ajax({
+			url: "http://zhangle.nat300.top/api/UserInfo/GetUserInfo?token=" + token,
+			type: "get",
+			dataType: "json",
+			success: function(result) {
+				$(".touxiang").attr("data-original", result.HeadImg);
+				img_lazyload();
+				$("#attribute").text(result.Contribution);
+				$("#activity").text(result.Activity);
+				$(".nombor").text(result.Reward);
+			}
+		});
+	}
+
+	function TiaoZhuan() {
+		window.location.href = "index.html"
+	}
+</script>

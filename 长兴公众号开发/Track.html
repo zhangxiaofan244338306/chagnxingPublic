@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>jQuery WeUI</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<meta name="description" content="Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+">
+		<link rel="stylesheet" href="css/layer.css">
+		<link rel="stylesheet" href="css/header.css">
+		<link rel="stylesheet" href="css/weui.min.css">
+		<link rel="stylesheet" href="css/jquery-weui.css">
+		<link rel="stylesheet" href="css/demos.css">
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/Track.css">
+	</head>
+	<style>
+		.weui-tab__bd .weui-tab__bd-item {
+			height: 100%;
+		}
+		
+		li:first-child {
+			display: block;
+		}
+	</style>
+
+	<body ontouchstart>
+		<script src="js/jquery-2.1.4.js"></script>
+		<script src="js/jquery-weui.js"></script>
+		<script type="text/javascript">
+			$.showLoading("页面加载中");
+		</script>
+		<div class="weui-tab">
+			<div class="weui-tab__bd">
+
+				<div id="tab2" class="weui-tab__bd-item weui-tab__bd-item--active infinite">
+					<div class="weui-flex hede">
+						<div class="weui-flex" onclick="TiaoZhuan()()"><span class="fa fa-angle-left fa-2x backA"></span>
+						</div>
+						<h1 class=" tou">我的轨迹</h1>
+					</div>
+
+					<div class="tbbody ">
+						<ul class="content-padded" id="list">
+
+						</ul>
+						<div class="weui-loadmore tab">
+							<i class="weui-loading"></i>
+							<span class="weui-loadmore__tips">正在加载</span>
+						</div>
+						<div class="weui-loadmore weui-loadmore_line ntab" style="display: none;">
+							<span class="weui-loadmore__tips">暂无数据</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+
+		<script type="text/javascript" src="js/jquery.cookie.js"></script>
+		<script src="js/fastclick.js"></script>
+		<script>
+			$(function() {
+				FastClick.attach(document.body);
+			});
+		</script>
+		<script src="js/jquery-weui.js"></script>
+		<script type="text/javascript" src="js/jquery.cookie.js"></script>
+		<script type="text/javascript" src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<script>
+			var pageCount = 0;
+			var talOver = false;
+			var ShowNum = 6;
+
+			window.onload = function() {
+				$.hideLoading();
+			};
+
+			function TiaoZhuan() {
+				window.location.href = 'myself.html'
+			}
+
+			//初始化， 第一次加载
+			$(document).ready(function() {
+				LoadReportPath(ShowNum, pageCount * ShowNum);
+			});
+
+			var loading = false; //状态标记
+			$(".infinite").infinite().on("infinite", function() {
+				if(loading) return; //
+				loading = true;
+
+				if(talOver) return;
+				$(".tab").css("display", "block");
+
+				setTimeout(function() {
+					LoadReportPath(ShowNum, ShowNum + pageCount);
+					loading = false;
+				}, 2000); //模拟延迟
+			});
+
+			//加载上报记录数据（reportID（int）：1、审核中，2、已审核，3、未审核--上报不实
+			//                 top(int):显示多少条数据
+			//                 skip：从第多少条开始
+			function LoadReportPath(top, skip) {
+				var token = $.cookie('token');
+				$.ajax({
+					url: "http://zhangle.nat300.top/api/ReportPath/GetAllReportPath?token=" + token + "&$top=" + top + "&$skip=" + skip,
+					type: "get",
+					dataType: "json",
+					success: function(result) {
+						var middleAndPath = result.MiddleAndPath;
+						if(middleAndPath.length < ShowNum) {
+							$(".tab").css("display", "none");
+							$(".ntab").css("display", "block");
+							talOver = true;
+						}
+
+						for(var i = 0; i < middleAndPath.length; i++) {
+							var pType = middleAndPath[i].pType;
+							var reportPathID = middleAndPath[i].reportPathID;
+							if(pType == 1) {
+								var addMiddle = middleAndPath[i].addMiddle;
+								var poiMiddleID = addMiddle.OBJECTID
+								var _html = '';
+								_html += '<li data-pType="' + pType + '" data-MiddleID="' + poiMiddleID + '" data-userAttachID="' + reportPathID + '" >';
+								_html += '<div class="table weui-flex">';
+								_html += '<div style="width:85%">';
+								_html += '<div class="weui-flex">';
+								_html += '<div><img src="img/path.150X150.png"class="cell_img"/></div>';;
+								_html += '<div class="table_name"><span class="ziti"></span>' + addMiddle.AliasName + '</div>';
+								_html += '</div>';
+								_html += '<div class="weui-flex">';
+								_html += '<div class="table_type"><span class="maishu">类型：</span></div>';
+								_html += '<div class="table_type_input"><span class="maishu" style="margin-bottom: 0px;">地址點</span></div>';
+								_html += '</div>';
+								_html += '<div class="weui-flex">';
+								_html += '<div class="table_address"><span class="maishu">地址：</span></div>';
+								_html += '<div class="table_address_input"><span class="maishu"></span>' + addMiddle.Address + '</div>';
+															
+								_html += '</div>';
+								_html += '<div>';
+								_html += '<div class="table_date"><span class="suzi1">' + addMiddle.UpdateTime.split("T", 2)[0] + '</span></div>';
+								_html += '</div>';
+								_html += '</div>';
+								_html += '<div class="table_img table_location" >';
+								_html += '<img src="img/location.150X150.png"class="cell_img"/></div>';	
+								_html += '</div>';
+								_html += '</li>';
+								$("#list").append(_html);
+
+							} else {
+								var poiMiddle = middleAndPath[i].poiMiddle;
+								var poiMiddleID = poiMiddle.OBJECTID
+								var userAttachID = poiMiddle.ID
+								var _html = '';
+								_html += '<li data-pType="' + pType + '" data-MiddleID="' + poiMiddleID + '" data-userAttachID="' + reportPathID + '" >';
+								_html += '<div class="table weui-flex">';
+								_html += '<div style="width:85%">';
+								_html += '<div class="weui-flex">';
+								_html += '<div><img src="img/path.150X150.png"class="cell_img"/></div>';
+								_html += '<div class="table_name"><span class="ziti">' + poiMiddle.Name + '</span></div>';
+								_html += '</div>';
+								_html += '<div class="weui-flex">';
+								_html += '<div class="table_type"><span class="maishu">类型：</span></div>';
+								_html += '<div class="table_type_input"><span class="maishu" style="margin-bottom: 0px;">兴趣点</span></div>';
+								_html += '</div>';
+								_html += '<div class="weui-flex">';
+								_html += '<div class="table_address"><span class="maishu">地址：</span></div>';
+								_html += '<div class="table_address_input"><span class="maishu">' + poiMiddle.Address + '</span></div>';
+								_html += '</div>';
+								_html += '<div>';
+								_html += '<div class="table_date"><span class="suzi1">' + poiMiddle.UpdateTime.split("T", 2)[0] + '</span></div>';
+								_html += '</div>';
+								_html += '</div>';
+								_html += '<div class="table_img table_location" >';
+								_html += '<img src="img/location.150X150.png"class="cell_img"/></div>';	
+								_html += '</div>';
+								_html += '</li>';
+								$("#list").append(_html);
+
+							}
+
+						}
+
+						pageCount += 1;
+					}
+				});
+			}
+
+			mui.init({
+				gestureConfig: {
+					longtap: true
+				}
+			});
+
+			mui.ready(function() {
+				//长按显示操作按钮
+				mui("#list").on('longtap', 'li', function() {
+					var dataMiddleID = $(this).attr("data-MiddleID");
+					delReward(this, dataMiddleID);
+				})
+				//点击进入我的轨迹详情页
+				mui("#list").on('tap', 'li', function() {
+					var datapType = $(this).attr("data-pType");
+					var dataMiddleID = $(this).attr("data-MiddleID");
+					var datauserAttachID = $(this).attr("data-userAttachID");
+					myReward(datauserAttachID, datapType, dataMiddleID)
+				});
+			});
+
+			//跳转到我的轨迹详情页面
+			function myReward(taskid, type, pointid) {
+				var url = encodeURI('pathdetail.html?taskid=' + taskid + '&type=' + type + '&pointid=' + pointid);
+				window.location.href = url;
+			}
+			//删除我的轨迹
+			function delReward(tem_li, tmp_id) {
+
+				layer.open({
+					content: '确定删除该消息吗？',
+					btn: ['确定', '取消'],
+					yes: function(index) {
+						layer.close(index);
+
+						$.ajax({
+							type: "POST",
+							url: "http://zhangle.nat300.top/api/Reward/UpdateIsDelete?userAttachID=" + tmp_id + "&token=" + token,
+							contentType: "application/json;charset=utf-8",
+							dataType: "json",
+							success: function(resp) {
+								var res = resp.res;
+								var message = resp.meg;
+								if(res == "OK") {
+									tem_li.remove();
+
+								} else {
+
+								}
+							}
+						});
+					}
+				});
+			}
+		</script>
+
+	</body>
+
+</html>

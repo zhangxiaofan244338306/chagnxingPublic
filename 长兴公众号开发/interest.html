@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>长兴公众号</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/header.css">
+		<link rel="stylesheet" href="css/weui.min.css">
+		<link rel="stylesheet" href="css/jquery-weui.css">
+		<link rel="stylesheet" href="css/demos.css">
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" href="css/interest.css">
+	</head>
+
+	<body>
+		<script src="js/jquery-2.1.4.js"></script>
+		<script src="js/jquery-weui.js"></script>
+		<script type="text/javascript">
+			$.showLoading("页面加载中");
+		</script>
+
+		<div class="weui-tab__bd" style="height: 94.5%;">
+			<div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+				<div class="weui-navbar">
+					<header class="hede">
+						<div class="weui-flex hede">
+							<div class="weui-flex" onclick="to()"><span class="fa fa-angle-left fa-2x backA"></span></div>
+							<h1 class=" tou">兴趣点</h1>
+						</div>
+					</header>
+
+					<div class="background">
+						<span class="body bdtf">城市：</span><span id="city" class="body bdte"></span><br />
+						<span class="body bdtf">县市：</span><span id="COUNTY" class="body bdte"></span><br />
+						<span class="body bdtf">乡镇：</span><span id="street" class="body bdte"></span>
+					</div>
+				</div>
+				<div class="cell">
+					<form id="form">
+						<div class="weui-cells weui-cells_form">
+							<!--隐藏元素-->
+							<div style="display: none;">
+								<input type="text" name="BD09Lon" id="BD09Lon" />
+								<input type="text" name="BD09Lat" id="BD09Lat" />
+								<input type="text" name="cityname" id="cityname" />
+								<input type="text" name="CountyName" id="contyname" />
+								<input type="text" name="townname" id="townname" />
+							</div>
+							<!--隐藏元素-->
+
+							<div class="weui-cell weui-cell_vcode">
+								<div class="weui-cell__hd">
+									<label class="weui-label bodyname">名称</label>
+								</div>
+								<div class="weui-cell__bd">
+									<input class="weui-input bodyname" name="NAME" id="mc" type="name" placeholder="请输入名称">
+								</div>
+							</div>
+							<div class="weui-cell weui-cell_vcode">
+								<div class="weui-cell__hd">
+									<label class="weui-label bodyname">手机号</label>
+								</div>
+								<div class="weui-cell__bd">
+									<input class="weui-input bodyname" name="PHONE" id="lxdh" placeholder="请输入手机号">
+								</div>
+							</div>
+							<div class="weui-cell weui-cell_vcode">
+								<div class="weui-cell__hd">
+									<label class="weui-label bodyname">地址</label>
+								</div>
+								<div class="weui-cell__bd">
+									<textarea class="weui-textarea bodyname" placeholder="请输入地址" rows="3" name="ADDRESS" id="dz"></textarea>
+								</div>
+								<div class="weui-cell__bd">
+									<a onclick="pop()" style="    text-decoration: none;
+    color: #007aff;
+    right: 22px;
+    position: absolute;
+    bottom: 32.5px;"><img src="img/geolocation.150X150.png" class="cell_img" /></a>
+								</div>
+							</div>
+
+							<div class="weui-cell weui-cell_vcode">
+								<div class="weui-cell__hd">
+									<label class="weui-label bodyname">图片</label>
+								</div>
+								<div class="weui-cell__bd">
+									<ul class="weui-uploader__files" id="uploaderFiles">
+
+										
+									</ul>
+									<div class="weui-uploader__input-box"><input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*" multiple/>
+										</div>
+								</div>
+							</div>
+							<div class="weui-cell weui-cell_vcode">
+								<div class="weui-cell__hd">
+									<label class="weui-label bodyname">网站</label>
+								</div>
+								<div class="weui-cell__bd">
+									<input class="weui-input bodyname" name="WEBSITE" id="wz" type="name" placeholder="">
+								</div>
+							</div>
+							<div>
+								<ul class="mui-table-view">
+									<li class="mui-table-view-cell mui-collapse">
+										<a href="#" class="bodyname">更多</a>
+										<div class="mui-collapse-content">
+											<div class="weui-cell weui-cell_vcode">
+												<div class="weui-cell__hd">
+													<label class="weui-label bodyname">FCODE</label>
+												</div>
+												<div class="weui-cell__bd">
+													<input class="weui-input bodyname" name="" id="FCODE" type="name" placeholder="">
+												</div>
+											</div>
+
+											<div class="weui-cell weui-cell_vcode">
+												<div class="weui-cell__hd">
+													<label class="weui-label bodyname">地址</label>
+												</div>
+												<div class="weui-cell__bd">
+													<input class="weui-input bodyname" name="adress" id="" type="name" placeholder="">
+												</div>
+											</div>
+										</div>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div>
+					<p class="anniu ">
+						<button type="submit" id="submitButton" onclick="submit()" class="weui-btn weui-btn_primary anniu"><img src="img/WhileSubmit150X150.png" style="height: 32px;width: 32px;margin-bottom: -11px;" />提交
+			</button></p>
+				</div>
+			</div>
+			<div id="tab2" class="weui-tab__bd-item ">
+
+				<div class="weui-flex hede">
+					<div class="weui-flex" onclick="setSecurePwd()"><span class="fa fa-angle-left fa-2x backA"></span>
+					</div>
+					<h1 class=" tou">地图选点</h1>
+				</div>
+
+				<div id="allmap">
+
+				</div>
+				<p class="anniu" id="test1">
+					<button id="submitButton" onclick="setSecurePwd()" class="weui-btn weui-btn_primary anniu">确定
+			</button></p>
+			</div>
+			<div>
+
+	</body>
+
+</html>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=WRopnGH4E03iFrqyXoDrbrGHwCoIuYeu&services=&t=20180130193904"></script>
+<script type="text/javascript" src="js/interest.js"></script>
+<script type="text/javascript" src="js/mui.js"></script>
+<script type="text/javascript">
+	window.onload = function() {
+		$.hideLoading();
+	};
+
+	function to() {
+		window.location.href = 'index.html'
+	}
+
+	//判断是否是由任务页面跳转--获取taskID
+	var url = location.href;
+	var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+	var paraObj = {}
+	for(i = 0; j = paraString[i]; i++) {
+		paraObj[j.substring(0, j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=") + 1, j.length);
+	}
+	var taskID = paraObj.taskid;
+	if(typeof(taskID) == "undefined") {
+		taskID = 0; //如果无任务，taskID = 0;
+	}
+	//获取token
+	var token = $.cookie('token');
+
+	var map = new BMap.Map("allmap", {
+		minZoom: 17
+	});
+	//初始化定位
+	var geolocation = new BMap.Geolocation();
+	//坐标解析地址
+	var geoc = new BMap.Geocoder();
+
+	geolocation.getCurrentPosition(function(r) {
+		if(this.getStatus() == BMAP_STATUS_SUCCESS) {
+			var point = r.point;
+			geoc.getLocation(point, function(rs) {
+				var addComp = rs.addressComponents;
+				var intext = (addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber);
+				document.getElementById("dz").innerHTML = intext;
+			});
+			document.getElementById("BD09Lon").value = point.lng;
+			document.getElementById("BD09Lat").value = point.lat;
+		}
+	}, {
+		enableHighAccuracy: true
+	});
+
+	//定时上传路径
+	reportPath();
+	var repath = self.setInterval("reportPath()", 30000);
+
+	function reportPath() {
+		//定位
+		geolocation.getCurrentPosition(function(r) {
+			if(this.getStatus() == BMAP_STATUS_SUCCESS) {
+				$.ajax({
+					url: "http://zhangle.nat300.top/api/ReportPath/AddNewReportPath?point=" + r.point.lng + "," + r.point.lat + "&token=" + token,
+					type: "POST",
+					dataType: "json",
+					success: function(result) {
+						if(result.res == "ERROR") {
+							$.alert(result.meg, "错误提示");
+						}
+					}
+				});
+			}
+		}, {
+			enableHighAccuracy: true
+		});
+	}
+
+	function pop() {
+		$("#tab2").addClass("weui-tab__bd-item--active");
+		$("#tab1").removeClass("weui-tab__bd-item--active");
+
+		//定位
+		geolocation.getCurrentPosition(function(r) {
+			if(this.getStatus() == BMAP_STATUS_SUCCESS) {
+				map.centerAndZoom(new BMap.Point(r.point.lng, r.point.lat), 19);
+			}
+		}, {
+			enableHighAccuracy: true
+		});
+
+		//计算地图的尺寸以得出中心点应该所处的位移距离  
+		var m_height = (map.getSize().height - 24) / 2;
+		var m_width = (map.getSize().width - 19) / 2;
+		// 定义一个控件类,即function  
+		function ZoomControl() {
+			// 默认停靠位置和偏移量  
+			this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
+			this.defaultOffset = new BMap.Size(m_width, m_height);
+		}
+		// 通过JavaScript的prototype属性继承于BMap.Control  
+		ZoomControl.prototype = new BMap.Control();
+
+		// 自定义控件必须实现自己的initialize方法,并且将控件的DOM元素返回  
+		// 在本方法中创建个div元素作为控件的容器,并将其添加到地图容器中  
+		ZoomControl.prototype.initialize = function(map) {
+			// 创建一个DOM元素  
+			var div = document.createElement("div");
+			//div.innerHTML='aaaa';  
+			// 添加文字说明     
+			// 设置样式   
+			div.style.width = "24px";
+			div.style.height = "36px";
+			div.style.cursor = "pointer";
+			div.style.background = "url(img/marker.png) center no-repeat";
+			// 绑定事件,点击一次放大两级  
+			div.onclick = function(e) {
+				map.setZoom(map.getZoom() + 2);
+			}
+			// 添加DOM元素到地图中  
+			map.getContainer().appendChild(div);
+			//alert(map.getContainer().style.width);  
+			// 将DOM元素返回  
+			return div;
+		}
+		var myZoomCtrl = new ZoomControl();
+		// 添加到地图当中  
+		map.addControl(myZoomCtrl);
+		//拖拽选点
+		map.addEventListener('touchend', function() {
+			var p = map.getCenter();
+			//获取当前所选点地址信息
+			var geoc = new BMap.Geocoder();
+			geoc.getLocation(p, function(rs) {
+				var addComp = rs.addressComponents;
+				var intext = (addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber);
+				document.getElementById("dz").innerHTML = intext;
+				document.getElementById("city").innerHTML = addComp.city
+				document.getElementById("COUNTY").innerHTML = addComp.district
+				document.getElementById("street").innerHTML = addComp.street
+				document.getElementById("cityname").value = addComp.city
+				document.getElementById("contyname").value = addComp.district
+				document.getElementById("townname").value = addComp.street
+			});
+			document.getElementById("BD09Lon").value = p.lng;
+			document.getElementById("BD09Lat").value = p.lat;
+			
+		});
+
+	}
+	//跳转到子页面
+	function setSecurePwd() {
+		$("#tab1").addClass("weui-tab__bd-item--active");
+		$("#tab2").removeClass("weui-tab__bd-item--active");
+
+	}
+
+	function submit() {
+		//使按钮失效
+		$("#submitButton").attr("disabled", true);
+		window.clearInterval(repath);
+
+		var formobj = document.querySelector('form');
+		var fd = new FormData(formobj);
+		var objData = {};
+		fd.forEach((value, key) => objData[key] = value);
+		var token = $.cookie('token');
+		$.showLoading("数据提交中...");
+		$.ajax({
+			url: "http://zhangle.nat300.top/api/POIMiddle/AddNewPOI?token=" + token + "&&taskID=" + taskID,
+			type: "POST",
+			data: objData,
+			dataType: "json",
+			success: function(result) {
+				if(result.res == "ERROR") {
+					$.hideLoading();
+					$.alert(result.meg, "错误提示");
+				} else {
+					var id = result.objectID;
+					var fileform = new FormData();
+					var length = $("#uploaderInput")[0].files.length;
+					for(var i = 0; i < length; i++) {
+						fileform.append("file" + i, $("#uploaderInput")[0].files[i]);
+					}
+
+					$.ajax({
+						url: "http://zhangle.nat300.top/api/POIMiddle/UpdatePhoto?token=" + token + "&&id=" + id,
+						type: "post",
+						data: fileform,
+						processData: false, // 告诉jQuery不要去处理发送的数据
+						contentType: false, // 告诉jQuery不要去设置Content-Type请求头
+						success: function(data) {
+							if(result.res == "ERROR") {
+								$.hideLoading();
+								$.alert(result.meg, "错误提示");
+								$("#submitButton").removeAttr("disabled");//使按钮生效
+							} else {
+								$.hideLoading();
+								$.alert(result.meg, "操作提示");
+								$(".weui-uploader__file").remove();
+								$("#form")[0].reset();
+								$("#submitButton").removeAttr("disabled");//使按钮生效
+							}
+						}
+					});
+
+				}
+			}
+		});
+	}
+
+
+</script>

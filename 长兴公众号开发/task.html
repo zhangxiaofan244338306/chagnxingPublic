@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>长兴公众号</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="css/layer.css">
+		<link rel="stylesheet" href="css/header.css">
+		<link rel="stylesheet" href="css/weui.min.css">
+		<link rel="stylesheet" href="css/jquery-weui.css">
+		<link rel="stylesheet" href="css/demos.css">
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/index.css">
+	</head>
+	<style>
+		.weui-tab__bd .weui-tab__bd-item {
+			height: 100%;
+		}
+		
+		.tbbody {
+			margin-top: 40px;
+			position: relative;
+			width: 100%;
+		}
+		
+		li:first-child {
+			display: block;
+		}
+	</style>
+
+	<body ontouchstart>
+		<script src="js/mui.min.js"></script>
+		<script src="js/layer.js"></script>
+		<script src="js/jquery-2.1.4.js"></script>
+		<script src="js/jquery-weui.js"></script>
+		<script type="text/javascript">
+			$.showLoading("页面加载中");
+		</script>
+		<div class="weui-tab">
+			<div class="weui-tab__bd">
+				
+
+				<div id="tab2" class="weui-tab__bd-item weui-tab__bd-item--active infinite">
+					<div class="weui-flex hede">
+						<div class="weui-flex" onclick="TiaoZhuan()"><span class="fa fa-angle-left fa-2xh backA"></span>
+
+						</div>
+						<h1 class=" tous">任务</h1>
+					</div>
+
+					<div class="tbbody">
+						<ul class="content-padded" id="taskTab">
+
+						</ul>
+						<div class="weui-loadmore tab">
+							<i class="weui-loading"></i>
+							<span class="weui-loadmore__tips">正在加载</span>
+						</div>
+						<div class="weui-loadmore weui-loadmore_line ntab" style="display: none;">
+							<span class="weui-loadmore__tips">暂无数据</span>
+						</div>
+					</div>
+					<div class="weui-actionsheet" id="iosActionsheet" style="background-color: white;">
+						<div class="weui-actionsheet__cell action-cellsed">
+							<p class="titles" style="font-weight: bold;font-size: 16px; color: darkgray;"><span>新增</span></p>
+							<p class="titles" style="color: darkgrey;"><span>地址、兴趣点</span></p>
+
+						</div>
+
+						<div id="address" class="weui-actionsheet__cell" style=" color: #2195F2;">地址点</div>
+
+						<div id="interest" class="weui-actionsheet__cell"  style=" color: #2195F2;">兴趣点</div>
+
+						<div class="weui-actionsheet__cell" id="iosActionsheetCancel" style=" color: dimgrey;" onclick="hideActionSheet()">取消</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</body>
+
+</html>
+<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=WRopnGH4E03iFrqyXoDrbrGHwCoIuYeu&services=&t=20180130193904"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript">
+	window.onload = function() {
+		$.hideLoading();
+	};
+
+	var pageCount = 0;
+	var ShowNum = 6; //一次显示记录个数
+	var talOver = false;
+
+	//初始化， 第一次加载
+	$(document).ready(function() {
+		loadingTask(ShowNum, ShowNum * pageCount);
+	});
+
+	var loading = false; //状态标记
+	$(".infinite").infinite().on("infinite", function() {
+		if(loading) return; //
+		loading = true;
+
+		if(talOver) return;
+		$(".tab").css("display", "block");
+
+		setTimeout(function() {
+			loadingTask(ShowNum, ShowNum + pageCount);
+			loading = false;
+		}, 2000); //模拟延迟
+	});
+
+	function loadingTask(top, skip) {
+		var token = $.cookie('token');
+//		
+
+		$.ajax({
+			url: "http://zhangle.nat300.top/api/Task/GetAllTask?token=" + token + "&$top=" + top + "&$skip=" + skip,
+			type: "get",
+			dataType: "json",
+			success: function(result) {
+				if(result.length < ShowNum) {
+					$(".tab").css("display", "none");
+					$(".ntab").css("display", "block");
+					talOver = true;
+
+				}
+
+				for(var i = 0; i < result.length; i++) {
+					var pType = result[i].PType;
+					var taskID = result[i].ID;
+					var Type = result[i].Type;
+					var _html = '';
+					_html += '<li data-pType="' + pType + '" data-MiddleID="' + taskID + '" data-userAttachID="' + Type + '" >';
+					_html += '<div class="table weui-flex">';
+					_html += '<div style="width: 85%;">';
+					_html += '<div class="weui-flex">';
+					if(result[i].Type == 1)
+						_html += '<div><img src="img/add.150X150.png"class="cell_img"/></div>';
+					else
+						_html += '<div><img src="img/edit.150X150.png"class="cell_img"/></div>';
+
+					_html += '<div class="table_name"><span class="ziti">' + result[i].Name + '</span></div>';
+					_html += '</div>';
+
+					_html += '<div class="weui-flex">';
+					_html += '<div class="table_address"><span class="maishu">描述：</span></div>';
+					_html += '<div class="table_address_input"><span class="maishu">' + result[i].Describe + '</span></div>';
+					_html += '</div>';
+					_html += '<div>';
+					_html += '<div class="table_date"><span class="suzi1">' + result[i].UpdateTime.split("T", 2)[0] + '</span></div>';
+					_html += '</div>';
+					_html += '</div>';
+					_html += '<div class="table_img table_location" >';
+					_html += '<img src="img/location.150X150.png"class="cell_img"/></div>';
+					_html += '</div>';
+					_html += '</li>';
+
+					$("#taskTab").append(_html);
+				}
+
+				pageCount += 1;
+			}
+		});
+
+	}
+
+	mui.init({
+		gestureConfig: {
+			longtap: true
+		}
+	});
+
+	mui.ready(function() {
+		//长按显示操作按钮
+		mui("#taskTab").on('longtap', 'li', function() {
+			delReward(this);
+		})
+		//彈出選項框
+		mui("#taskTab").on('tap', 'li', function() {
+			var taskID = $(this).attr("data-MiddleID");
+			showActionSheet();
+			//跳轉到新增興趣點
+			var interest =document.getElementById("interest");
+			interest.addEventListener("click", function() {
+			var url = encodeURI('interest.html?taskid=' + taskID);
+			window.location.href = url;
+			})
+			//跳轉到新增地址點
+			var address =document.getElementById("address");
+			address.addEventListener("click", function() {
+			var url = encodeURI('address.html?taskid=' + taskID);
+			window.location.href = url;
+			})
+			});
+	});
+
+
+	//跳转到主页面
+	function TiaoZhuan() {
+		window.location.href = "index.html"
+		
+	}
+	
+	
+		//隐藏弹框
+	function hideActionSheet() {
+		$('#iosActionsheet').removeClass('weui-actionsheet_toggle');
+		$('#iosMask').fadeOut(200);
+	}
+	//显示弹出框
+	function showActionSheet() {
+		$('#iosActionsheet').addClass('weui-actionsheet_toggle');
+		$('#iosMask').fadeIn(200);
+		
+		
+	}
+
+	$('#iosMask').on('click', hideActionSheet);
+	$('#iosActionsheetCancel').on('click', hideActionSheet);
+	$("#showIOSActionSheet").on("click", showActionSheet);
+</script>
